@@ -47,16 +47,16 @@ function WishPage() {
     <p className="wish-subtitle">Something kind. Something from you.</p>
     <form className="wish-form" onSubmit={submit} noValidate>
       <div><label className="field-label" htmlFor="email">Your email</label>
-        <input id="email" type="email" autoComplete="email" maxLength={255} className="wish-input" placeholder="you@example.com" value={fields.email} aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} onChange={e => setFields({ ...fields, email: e.target.value })} />
-        {errors.email && <p id="email-error" className="field-error">{errors.email}</p>}
+        <input id="email" type="email" autoComplete="email" maxLength={255} className="wish-input" placeholder="you@example.com" value={fields.email} aria-invalid={!!errors['email']} aria-describedby={errors['email'] ? "email-error" : undefined} onChange={e => setFields({ ...fields, email: e.target.value })} />
+        {errors['email'] && <p id="email-error" className="field-error">{errors['email']}</p>}
       </div>
       <div><label className="field-label" htmlFor="wish">Your birthday wish <span>FOR DOLA</span></label>
-        <textarea id="wish" maxLength={2000} className="wish-input" placeholder="Happy birthday, Dola…" value={fields.wish} aria-invalid={!!errors.wish} aria-describedby={errors.wish ? "wish-error" : undefined} onChange={e => setFields({ ...fields, wish: e.target.value })} />
-        {errors.wish && <p id="wish-error" className="field-error">{errors.wish}</p>}
+        <textarea id="wish" maxLength={2000} className="wish-input" placeholder="Happy birthday, Dola…" value={fields.wish} aria-invalid={!!errors['wish']} aria-describedby={errors['wish'] ? "wish-error" : undefined} onChange={e => setFields({ ...fields, wish: e.target.value })} />
+        {errors['wish'] && <p id="wish-error" className="field-error">{errors['wish']}</p>}
       </div>
       <div><label className="field-label" htmlFor="amount">A little birthday money <span>ANY AMOUNT</span></label>
-        <div className="amount-input"><span>₦</span><input id="amount" inputMode="decimal" className="wish-input" placeholder="0.00" value={fields.amount} maxLength={18} aria-invalid={!!errors.amount} aria-describedby={errors.amount ? "amount-error" : undefined} onChange={e => setFields({ ...fields, amount: e.target.value })} /><span>NGN</span></div>
-        {errors.amount && <p id="amount-error" className="field-error">{errors.amount}</p>}
+        <div className="amount-input"><span>₦</span><input id="amount" inputMode="decimal" className="wish-input" placeholder="0.00" value={fields.amount} maxLength={18} aria-invalid={!!errors['amount']} aria-describedby={errors['amount'] ? "amount-error" : undefined} onChange={e => setFields({ ...fields, amount: e.target.value })} /><span>NGN</span></div>
+        {errors['amount'] && <p id="amount-error" className="field-error">{errors['amount']}</p>}
       </div>
       {notice && <div role="alert" className="form-notice">{notice}</div>}
       <Button variant="birthday" type="submit" disabled={busy}>{busy ? "Opening payment…" : "Press money"}{busy ? <Loader2 className="animate-spin" /> : <ArrowUpRight />}</Button>
