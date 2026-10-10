@@ -21,7 +21,10 @@ export const startBirthdayCheckout = createServerFn({ method: "POST" })
     const { error: saveError } = await supabaseAdmin.from("birthday_wishes").insert({ id, email: data.email, wish: data.wish, amount: Number(data.amount), currency: "NGN" });
     if (saveError) return { error: "Couldn’t save your wish. Please try again." };
     const api = key.startsWith("sk_sandbox_") ? "https://sandbox-api.bachs.io" : "https://api.bachs.io";
-    const origin = new URL(getRequest().url).origin;
+    const requestUrl = new URL(getRequest().url);
+    const origin = requestUrl.hostname === "localhost" || requestUrl.hostname === "127.0.0.1"
+      ? "https://id-preview--1263ec29-8dcf-45e1-a920-0e18dfefef32.lovable.app"
+      : requestUrl.origin;
     try {
       const response = await fetch(`${api}/v1/checkout-sessions`, {
         method: "POST",

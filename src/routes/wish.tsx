@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowUpRight, LockKeyhole, Loader2 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { BirthdayShell } from "@/components/birthday-shell";
@@ -25,6 +25,11 @@ function WishPage() {
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const checkout = useServerFn(startBirthdayCheckout);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("returned")) {
+      setNotice("Thank you for the birthday love. Your wish is saved; check Bachs for your payment confirmation.");
+    }
+  }, []);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const parsed = wishSchema.safeParse(fields);
