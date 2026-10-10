@@ -14,13 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      birthday_rate_limits: {
+        Row: {
+          key: string
+          requests: number
+          window_started: string
+        }
+        Insert: {
+          key: string
+          requests?: number
+          window_started?: string
+        }
+        Update: {
+          key?: string
+          requests?: number
+          window_started?: string
+        }
+        Relationships: []
+      }
+      birthday_wishes: {
+        Row: {
+          amount: number
+          checkout_id: string | null
+          created_at: string
+          currency: string
+          email: string
+          id: string
+          wish: string
+        }
+        Insert: {
+          amount: number
+          checkout_id?: string | null
+          created_at?: string
+          currency?: string
+          email: string
+          id?: string
+          wish: string
+        }
+        Update: {
+          amount?: number
+          checkout_id?: string | null
+          created_at?: string
+          currency?: string
+          email?: string
+          id?: string
+          wish?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      birthday_allow_request: { Args: { rate_key: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
